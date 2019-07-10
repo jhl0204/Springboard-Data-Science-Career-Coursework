@@ -1,0 +1,472 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "This exercise will require you to pull some data from the Qunadl API. Qaundl is currently the most widely used aggregator of financial market data."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "As a first step, you will need to register a free account on the http://www.quandl.com website."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "After you register, you will be provided with a unique API key, that you should store:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Store the API key as a string - according to PEP8, constants are always named in all upper case\n",
+    "API_KEY = 'xsKMRVUrUB4naFehYUvm'"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Qaundl has a large number of data sources, but, unfortunately, most of them require a Premium subscription. Still, there are also a good number of free datasets."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "For this mini project, we will focus on equities data from the Frankfurt Stock Exhange (FSE), which is available for free. We'll try and analyze the stock prices of a company called Carl Zeiss Meditec, which manufactures tools for eye examinations, as well as medical lasers for laser eye surgery: https://www.zeiss.com/meditec/int/home.html. The company is listed under the stock ticker AFX_X."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "You can find the detailed Quandl API instructions here: https://docs.quandl.com/docs/time-series"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "While there is a dedicated Python package for connecting to the Quandl API, we would prefer that you use the *requests* package, which can be easily downloaded using *pip* or *conda*. You can find the documentation for the package here: http://docs.python-requests.org/en/master/ "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Finally, apart from the *requests* package, you are encouraged to not use any third party Python packages, such as *pandas*, and instead focus on what's available in the Python Standard Library (the *collections* module might come in handy: https://pymotw.com/3/collections/ ).\n",
+    "Also, since you won't have access to DataFrames, you are encouraged to us Python's native data structures - preferably dictionaries, though some questions can also be answered using lists.\n",
+    "You can read more on these data structures here: https://docs.python.org/3/tutorial/datastructures.html"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Keep in mind that the JSON responses you will be getting from the API map almost one-to-one to Python's dictionaries. Unfortunately, they can be very nested, so make sure you read up on indexing dictionaries in the documentation provided above."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# First, import the relevant modules\n",
+    "import requests\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'requests.structures.CaseInsensitiveDict'>\n",
+      "<class 'dict'>\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# # # # # \n",
+    "# Now, call the Quandl API and pull out a small sample of the data (only one day) to get a glimpse\n",
+    "# into the JSON structure that will be returned\n",
+    "\n",
+    "# Reference Documentation: \n",
+    "# Getting Started: https://blog.quandl.com/getting-started-with-the-quandl-api\n",
+    "# Parameter Reference: https://docs.quandl.com/docs/parameters-2#section-times-series-parameters\n",
+    "\n",
+    "# url ends with a query (?)\n",
+    "url = 'https://www.quandl.com/api/v3/datasets/FSE/AFX_X.json?'\n",
+    "start_date = 'start_date=2012-08-08'\n",
+    "end_date = 'end_date=2012-08-11'\n",
+    "ascend = 'order=asc'\n",
+    "descend = 'order=desc'\n",
+    "api_key = 'api_key=' + API_KEY\n",
+    "\n",
+    "r = requests.get(url + start_date + '&' + end_date + '&' + ascend + '&' + api_key)\n",
+    "\n",
+    "# Header information\n",
+    "header_data = r.headers\n",
+    "\n",
+    "# # # Practice: Print out all the column names in new line\n",
+    "# for i in header_file.keys():\n",
+    "#     print(i)\n",
+    "\n",
+    "# Store in json object \n",
+    "json_data = r.json()\n",
+    "    \n",
+    "# Sanity check for type     \n",
+    "print(type(header_data))\n",
+    "print(type(json_data))\n",
+    "\n",
+    "# Make sure the below is equal (two different approaches for the same result)\n",
+    "r.headers.get('date') == header_data['date']\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Inspect the JSON structure of the object you created, and take note of how nested it is,\n",
+    "# as well as the overall structure\n",
+    "\n",
+    "sample_col_list = json_data['dataset']['column_names']\n",
+    "sample_data_list = json_data['dataset']['data']\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "These are your tasks for this mini project:\n",
+    "\n",
+    "1. Collect data from the Franfurt Stock Exchange, for the ticker AFX_X, for the whole year 2017 (keep in mind that the date format is YYYY-MM-DD).\n",
+    "2. Convert the returned JSON object into a Python dictionary.\n",
+    "3. Calculate what the highest and lowest opening prices were for the stock in this period.\n",
+    "4. What was the largest change in any one day (based on High and Low price)?\n",
+    "5. What was the largest change between any two days (based on Closing Price)?\n",
+    "6. What was the average daily trading volume during this year?\n",
+    "7. (Optional) What was the median trading volume during this year. (Note: you may need to implement your own function for calculating the median.)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### ANSWERS"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "1. Collect data from the Franfurt Stock Exchange, for the ticker AFX_X, for the whole year 2017 (keep in mind that the date format is YYYY-MM-DD)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "200"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "url = 'https://www.quandl.com/api/v3/datasets/FSE/AFX_X.json?'\n",
+    "start_date = 'start_date=2017-01-01'\n",
+    "end_date = 'end_date=2017-12-31'\n",
+    "ascend = 'order=asc'\n",
+    "descend = 'order=desc'\n",
+    "api_key = 'api_key=' + API_KEY\n",
+    "\n",
+    "r = requests.get(url + start_date + '&' + end_date + '&' + ascend + '&' + api_key)\n",
+    "\n",
+    "# check status_code to verfity that requests was successful\n",
+    "r.status_code\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "2. Convert the returned JSON object into a Python dictionary."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'dict'>\n"
+     ]
+    }
+   ],
+   "source": [
+    "json_data = r.json()\n",
+    "print(type(json_data))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "3. Calculate what the highest and lowest opening prices were for the stock in this period."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "During the period of 2017-01-01 and 2017-12-31, the lowest opening price was $34.0. The highest opening price was $53.11.\n"
+     ]
+    }
+   ],
+   "source": [
+    "col_list = json_data['dataset']['column_names']\n",
+    "data_list = json_data['dataset']['data']\n",
+    "\n",
+    "# Sanity check that data entries are equal to the # of columns\n",
+    "assert len(col_list) == len(data_list[0])\n",
+    "\n",
+    "# 'Open' Prices are stored in the second column (index: 1)\n",
+    "# print(col_list[1])\n",
+    "\n",
+    "# Create a list of opening prices using list comprehension \n",
+    "# Will be iterating over len(data_list)\n",
+    "# Make sure to include conditional to drop 'None' values since sorted() can't compare 'None' to 'float'\n",
+    "\n",
+    "opening_price_list = [data_list[i][1] for i in range(len(data_list)) if data_list[i][1] != None]\n",
+    "opening_price_list = sorted(opening_price_list)\n",
+    "\n",
+    "lowest = opening_price_list[0]\n",
+    "highest = opening_price_list[-1]\n",
+    "\n",
+    "statement = \"During the period of 2017-01-01 and 2017-12-31, the lowest opening price \\\n",
+    "was ${}. The highest opening price was ${}.\"\n",
+    "print(statement.format(lowest, highest))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "4. What was the largest change in any one day (based on High and Low price)?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 93,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Largest change in any one day (based on High and Low price) is $2.81\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Index 2 is High / Index 3 is Low \n",
+    "col_list[2]\n",
+    "col_list[3] \n",
+    "\n",
+    "# High - Low \n",
+    "\n",
+    "price_change_list = [(data_list[i][2] - data_list[i][3]) for i in range(len(data_list)) if ((data_list[i][2] != None) & (data_list[i][3] != None))]\n",
+    "\n",
+    "price_change_list = sorted(price_change_list, reverse=True) # descending order\n",
+    "largest = price_change_list[0] \n",
+    "# print(type(largest))\n",
+    "\n",
+    "statement = \"Largest change in any one day (based on High and Low price) is ${0:.2f}\"\n",
+    "\n",
+    "print(statement.format(largest))\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "5. What was the largest change between any two days (based on Closing Price)?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 94,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Largest change between any two days (based on Closing Price) is $2.56\n"
+     ]
+    }
+   ],
+   "source": [
+    "# print(col_list)\n",
+    "\n",
+    "# Index 4 is Close Price \n",
+    "col_list[4]\n",
+    "\n",
+    "# between any two days means consecutive days \n",
+    "# I took the absolute value of the difference \n",
+    "\n",
+    "closing_price_change = [abs(data_list[i][4] - data_list[i+1][4]) for i in range(len(data_list) - 1) if (data_list[i][4] != None)]\n",
+    "\n",
+    "closing_price_change = sorted(closing_price_change, reverse=True)\n",
+    "change = closing_price_change[0]\n",
+    "\n",
+    "statement = \"Largest change between any two days (based on Closing Price) is ${0:.2f}\"\n",
+    "\n",
+    "print(statement.format(change))\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "6. What was the average daily trading volume during this year?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Average Daily Volume during year 2017 is 89124.337\n"
+     ]
+    }
+   ],
+   "source": [
+    "# print(col_list)\n",
+    "\n",
+    "# Index 6 is Traded Volume\n",
+    "col_list[6]\n",
+    "\n",
+    "volume = [data_list[i][6] for i in range(len(data_list)) if (data_list[i][6] != None)]\n",
+    "average_volume = sum(volume)/len(volume)  # since we're not using any third-party packages\n",
+    "\n",
+    "statement = \"Average Daily Volume during the year 2017 is {0:.3f}\"\n",
+    "\n",
+    "print(statement.format(average_volume))\n",
+    " "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "7. (Optional) What was the median trading volume during this year. (Note: you may need to implement your own function for calculating the median.)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 92,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Median trading volume during year of 2017 was 76286.000\n"
+     ]
+    }
+   ],
+   "source": [
+    "volume = [data_list[i][6] for i in range(len(data_list)) if (data_list[i][6] != None)]\n",
+    "\n",
+    "def median_of_list(a_list):\n",
+    "    \n",
+    "    # important to sort the values first to get the median! \n",
+    "    a_list = sorted(a_list)\n",
+    "    length = len(a_list)\n",
+    "    \n",
+    "    if (length % 2 == 1):\n",
+    "        idx = (length // 2)     # use integer division (ex. 5//2 = 2)\n",
+    "                                # also remember that indexing starts from zero! \n",
+    "        median = a_list[idx]    # (if indexing started from 1, would have added 1 to idx)\n",
+    "        \n",
+    "\n",
+    "    elif (length % 2 == 0):\n",
+    "        idx = int(length / 2)       # normal division and cast it as int\n",
+    "        median = (a_list[idx - 1] + a_list[idx]) / 2\n",
+    "\n",
+    "    return median\n",
+    "\n",
+    "median = median_of_list(volume)\n",
+    "statement = \"Median trading volume during the year of 2017 was {0:.3f}\"\n",
+    "\n",
+    "print(statement.format(median))\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
