@@ -1,3 +1,10 @@
+/* Welcome to the SQL mini project. For this project, you will use
+Springboard' online SQL platform, which you can log into through the
+following link:
+
+https://sql.springboard.com/
+Username: student
+Password: learn_sql@springboard
 
 /* Q1: Some of the facilities charge a fee to members, but some do not.
 Please list the names of the facilities that do. */
