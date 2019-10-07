@@ -1,7 +1,7 @@
 # Springboard Data Science Career Track
 
 
-### Introduction
+## Introduction
 
 This is the repository of mini assignments and projects I completed for the [Springboard Data Science Career Track](https://www.springboard.com/workshops/data-science-career-track) program. Capstone Projects, which combine most, if not all of the technical skills and concepts learned from these projects, can be found in the following separate repositories. 
 
