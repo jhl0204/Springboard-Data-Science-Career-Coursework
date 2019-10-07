@@ -14,12 +14,12 @@ _______
 
 | Chapter | Project Title | Link |
 | --- | --- | --- |
-|  Data wrangling | Basic JSON exercise | [Learn More]() | 
-| | Basic SQL | [Learn More]() | 
-| | Basic API usage with Quandl API | [Learn More]() | 
-| Inferential Statistics | Analyzing Hospital Medical Charges with Frequentist Statistics  | [Learn More]() | 
-| | Analyzing Hospital Medical Charges with Bootstrapping | [Learn More]() | 
-| | Analyzing Hospital Medical Charges with Bayesian Methods (PyMC3)  | [Learn More]() | 
+|  Data wrangling | Basic JSON exercise | [Link to Notebook]() | 
+| | Basic SQL | Link to Notebook]() | 
+| | Basic API usage with Quandl API | Link to Notebook]() | 
+| Inferential Statistics | Analyzing Hospital Medical Charges with Frequentist Statistics  | Link to Notebook]() | 
+| | Analyzing Hospital Medical Charges with Bootstrapping | Link to Notebook]() | 
+| | Analyzing Hospital Medical Charges with Bayesian Methods (PyMC3)  | Link to Notebook]() | 
 | Machine Learning | Performing Linear regression on Boston housing dataset | [Learn More]() | 
 | | Performing Logistic regression on heights and weights dataset | [Learn More]() | 
 | | Predicting movie ratings from RT reviews using Multinomial Naive Bayes | [Learn More]() | 
@@ -57,21 +57,18 @@ Performing statistics on the first question reveals that the lower limit of the 
 ***Machine Learning***
 
 
-**1. Performing Linear regression on Boston housing dataset:**
+**1. Performing Linear regression on Boston housing dataset:** This section demonstrates my ability to build a linear regression model using `statsmodels` library to predict the housing prices in Boston. Boston housing dataset is a classic dataset in the machine learning community and includes various features such as *nitric oxide concentration, average number of rooms per dwelling, and full-value property-tax rate per $10,000*. Out of these features, I focus on three feature variables **(per capita crime rate, average number of rooms per dwelling, and pupil-teacher ratio by town)** to predict the median price of the houses. I use $R^2$ value and AIC as metrics to evaluate the model and exclude outliers and influence points to improve model predictability. 
 
-**2. Performing Logistic regression on heights and weights dataset:**
+
+**2. Performing Logistic regression on heights and weights dataset:** This section demonstrates ability to perform simple classification using a logistic regression model from `scikit-learn` library. Using cross-validation and grid search methods, I tune the model hyperparameters (In logistic regression models, the regularization parameter ***C***). For this particular dataset, using GridSearchCV yields an accuracy score of 0.9252 for the test set for the parameter C = 1. 
+
+
 
 **3. Predicting movie ratings from RT reviews using Multinomial Naive Bayes:**
 
 **4. Customer segmentation using Clustering Methods:**
 
 
-
-
-Machine Learning
-Linear Regression with Boston Housing Dataset: I use scikit-learn library to build a linear regression model to predict the housing prices in Boston. The various features include per capita crime rate, average number of rooms per dwelling, and pupil-teacher ratio by town. I also split the data into training and testing sets in order to measure how well the model built with the training set can predict the 'unseen' data in the test set. I show how multiple rounds of cross-validation performed on different partitions help limit the problem of overfitting a particular training subset and thus reduce variability of the model.
-
-Classification and Logistic Regression: I use cross-validation and grid search to find the best regularization parameter C for the logistic regression. Regularization applies a penalty for increasing the coefficient estimates in order to reduce overfitting. The regularization parameter C in scikit-learn is the inverse of the shrinkage parameter lambda. Larger lambda or smaller C increases the shrinkage pentalty and shrinks the coefficient estimates toward zero. By default scikit-learn sets C=1 in logistic regression, so some amount of regularization is used even if C is not specified. Regularization is good at reducing the variance of the predictions but increasing the bias at the same time. GridSearchCV performs a cross-validated grid-search over a parameter grid. We need to specify an estimation method, parameter values for the estimator and a scoring method. The results show the best estimator, the score of the best estimator, and the parameter setting that yields the best score.
 
 Text Classification with Naive Bayes: I analyze the movie reviews from the rotten tomatoes database. The goal is to train a classifier to predict whether a critic's movie review is 'fresh' or 'rotten.' To preprocess the text, CountVectorizer allows us convert the collection of movie reviews into a matrix of token counts. The parameter min_df is used to removed terms that are too rare, and max_df is used to remove terms that are too common. I then train a multinomial Naive Bayes classifier assuming that features are conditionally independent given the class. In Naive Bayes, alpha is an additive (Laplace/Lidstone) smoothing parameter. A larger alpha will reduce the variance of the model (and overfitting) but increase bias at the same time. We can think of alpha as a pseudocount of the number of times a word has been seen. In the following code, I use grid search to find the best alpha as well as the best min_df that will maximize the probability of observing the training data.
 
