@@ -30,7 +30,7 @@ _______
 _______
 ### Brief Project Descriptions: 
 
-***#### Data Wrangling***
+***Data Wrangling***
 
 **Basic JSON exercise:** This simple exercise demonstrates ability to work with JSON files. The dataset comes from the ***2013 World Bank data*** on projects funded by the World Bank and is in a JSON file format. I also fill in missing values using a lookup table. Data wrangling reveals that *China, Indonesia, and Vietnam* had the most projects funded by the World Bank in 2013. The most popular project themes were *Environment and natural resources management, Rural development, and Human development.*
 
@@ -41,7 +41,7 @@ _______
 
 
 
-***#### Inferential Statistics***
+***Inferential Statistics***
 
 This section is divided into three parts that build on top of each other. Each section uses different statistical methods to gain insights on medical charges data (Source: [Kaggle](https://www.kaggle.com/easonlai/sample-insurance-claim-prediction-dataset))
 
@@ -54,7 +54,7 @@ Performing statistics on the first question reveals that the lower limit of the 
 
 **Analyzing Hospital Medical Charges with Bayesian Methods (PyMC3):** This section is mostly focused on using and familiarizing oneself with the PyMC3 library. As an exercise, this section models 'no-insurance' group's individual medical charges using Bayesian inferential modeling.
 
-***#### Machine Learning***
+***Machine Learning***
 
 
 **Performing Linear regression on Boston housing dataset:**
