@@ -32,12 +32,12 @@ _______
 
 ***Data Wrangling***
 
-**Basic JSON exercise:** This simple exercise demonstrates ability to work with JSON files. The dataset comes from the ***2013 World Bank data*** on projects funded by the World Bank and is in a JSON file format. I also fill in missing values using a lookup table. Data wrangling reveals that *China, Indonesia, and Vietnam* had the most projects funded by the World Bank in 2013. The most popular project themes were *Environment and natural resources management, Rural development, and Human development.*
+**1. Basic JSON exercise:** This simple exercise demonstrates ability to work with JSON files. The dataset comes from the ***2013 World Bank data*** on projects funded by the World Bank and is in a JSON file format. I also fill in missing values using a lookup table. Data wrangling reveals that *China, Indonesia, and Vietnam* had the most projects funded by the World Bank in 2013. The most popular project themes were *Environment and natural resources management, Rural development, and Human development.*
 
-**Basic SQL:** This project demonstrates ability to write simple SQL scripts to join, manipulate, and extract data from three tables in **country clubhouse** data. The SQL database is hosted on a separate Springboard server and the scripts are written in response to the specific questions provided by Springboard. 
+**2. Basic SQL:** This project demonstrates ability to write simple SQL scripts to join, manipulate, and extract data from three tables in **country clubhouse** data. The SQL database is hosted on a separate Springboard server and the scripts are written in response to the specific questions provided by Springboard. 
 
 
-**Basic API usage with Quandl API:** This exercise demonstrates ability to use *requests* package to retrieve data from [Quandl](https://www.quandl.com/) using API keys. For 2017 Franfurt Stock Exchange data (ticker AFX_X), I am able to find out that the lowest opening price was $34.0, the highest opening price was $53.11, and that the median trading volume during 2017 was 76286.000, among other simple financial metrics. 
+**3. Basic API usage with Quandl API:** This exercise demonstrates ability to use *requests* package to retrieve data from [Quandl](https://www.quandl.com/) using API keys. For 2017 Franfurt Stock Exchange data (ticker AFX_X), I am able to find out that the lowest opening price was $34.0, the highest opening price was $53.11, and that the median trading volume during 2017 was 76286.000, among other simple financial metrics. 
 
 
 
@@ -45,25 +45,25 @@ _______
 
 This section is divided into three parts that build on top of each other. Each section uses different statistical methods to gain insights on medical charges data (Source: [Kaggle](https://www.kaggle.com/easonlai/sample-insurance-claim-prediction-dataset))
 
-**Analyzing Hospital Medical Charges with Frequentist Statistics:** Using classical frequentist methods such as the z-statistic and t-statistic and the scipy statistics package, this section investigates two questions: 
+**1. Analyzing Hospital Medical Charges with Frequentist Statistics:** Using classical frequentist methods such as the z-statistic and t-statistic and the scipy statistics package, this section investigates two questions: 
 1) whether the hospital's revenue stream fell below a key threshold of $12,000 
 2) whether people with insurance are charged a different amount to those without 
 Performing statistics on the first question reveals that the lower limit of the 95% confidence interval for the population mean is $12,725.48. Thus it is highly unlikely that the hospital's revenue stream fell below the threshold of $12,000. For the second question, using Welch's t-test gives us a t-value of -13.29. Thus we reject the null hypothesis and conclude that there *is* a difference in the amount charged between the two groups
 
-**Analyzing Hospital Medical Charges with Bootstrapping:** This section explores the same two questions above but analyzes it using bootstrapping methods. For the first question: When we generate 10,000 bootstrap replicates, we obtain $12724.46 (exact value might vary due to bootstrapping) for the lower limit of the 95% confidence interval, validating our frequentist approach above. For the second question, we conclude that there is no practical need to perform bootstrapping since the obtained t-value is already so low (t-value of -13.29). We do however perform bootstrapping methods to verify that the variances of the two groups (insured vs. non-insured) were unequal, validating our choice of using Welch's t-test in the previous section.
+**2. Analyzing Hospital Medical Charges with Bootstrapping:** This section explores the same two questions above but analyzes it using bootstrapping methods. For the first question: When we generate 10,000 bootstrap replicates, we obtain $12724.46 (exact value might vary due to bootstrapping) for the lower limit of the 95% confidence interval, validating our frequentist approach above. For the second question, we conclude that there is no practical need to perform bootstrapping since the obtained t-value is already so low (t-value of -13.29). We do however perform bootstrapping methods to verify that the variances of the two groups (insured vs. non-insured) were unequal, validating our choice of using Welch's t-test in the previous section.
 
-**Analyzing Hospital Medical Charges with Bayesian Methods (PyMC3):** This section is mostly focused on using and familiarizing oneself with the PyMC3 library. As an exercise, this section models 'no-insurance' group's individual medical charges using Bayesian inferential modeling.
+**3. Analyzing Hospital Medical Charges with Bayesian Methods (PyMC3):** This section is mostly focused on using and familiarizing oneself with the PyMC3 library. As an exercise, this section models 'no-insurance' group's individual medical charges using Bayesian inferential modeling.
 
 ***Machine Learning***
 
 
-**Performing Linear regression on Boston housing dataset:**
+**1. Performing Linear regression on Boston housing dataset:**
 
-**Performing Logistic regression on heights and weights dataset:**
+**2. Performing Logistic regression on heights and weights dataset:**
 
-**Predicting movie ratings from RT reviews using Multinomial Naive Bayes:**
+**3. Predicting movie ratings from RT reviews using Multinomial Naive Bayes:**
 
-**Customer segmentation using Clustering Methods:**
+**4. Customer segmentation using Clustering Methods:**
 
 
 
