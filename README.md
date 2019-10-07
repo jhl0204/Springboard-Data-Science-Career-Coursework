@@ -14,12 +14,12 @@ _______
 
 | Chapter | Project Title | Link |
 | --- | --- | --- |
-|  Data wrangling | Basic JSON exercises | [Learn More]() | 
+|  Data wrangling | Basic JSON exercise | [Learn More]() | 
 | | Basic SQL | [Learn More]() | 
 | | Basic API usage with Quandl API | [Learn More]() | 
 | Inferential Statistics | Analyzing Hospital Medical Charges with Frequentist Statistics  | [Learn More]() | 
 | | Analyzing Hospital Medical Charges with Bootstrapping | [Learn More]() | 
-| | Analyzing Hospital Medical Charges with Bayesian Methods (pymc3)  | [Learn More]() | 
+| | Analyzing Hospital Medical Charges with Bayesian Methods (PyMC3)  | [Learn More]() | 
 | Machine Learning | Performing Linear regression on Boston housing dataset | [Learn More]() | 
 | | Performing Logistic regression on heights and weights dataset | [Learn More]() | 
 | | Predicting movie ratings from RT reviews using Multinomial Naive Bayes | [Learn More]() | 
@@ -27,11 +27,12 @@ _______
 
 
 
+_______
+### Brief Project Descriptions: 
 
+#### Data Wrangling
 
-### Data Wrangling
-
-**Basic JSON exercises:** This simple exercise demonstrates ability to work with JSON files. The dataset comes from the ***2013 World Bank data*** on projects funded by the World Bank and is in a JSON file format. I also fill in missing values using a lookup table. Data wrangling reveals that *China, Indonesia, and Vietnam* had the most projects funded by the World Bank in 2013. The most popular project themes were *Environment and natural resources management, Rural development, and Human development.*
+**Basic JSON exercise:** This simple exercise demonstrates ability to work with JSON files. The dataset comes from the ***2013 World Bank data*** on projects funded by the World Bank and is in a JSON file format. I also fill in missing values using a lookup table. Data wrangling reveals that *China, Indonesia, and Vietnam* had the most projects funded by the World Bank in 2013. The most popular project themes were *Environment and natural resources management, Rural development, and Human development.*
 
 **Basic SQL:** This project demonstrates ability to write simple SQL scripts to join, manipulate, and extract data from three tables in **country clubhouse** data. The SQL database is hosted on a separate Springboard server and the scripts are written in response to the specific questions provided by Springboard. 
 
@@ -40,19 +41,20 @@ _______
 
 
 
-### Inferential Statistics
+#### Inferential Statistics
 
-**Analyzing Hospital Medical Charges with Frequentist Statistics:**
+This section is divided into three parts that build on top of each other. Each section uses different statistical methods to gain insights on medical charges data (Source: [Kaggle](https://www.kaggle.com/easonlai/sample-insurance-claim-prediction-dataset))
 
+**Analyzing Hospital Medical Charges with Frequentist Statistics:** Using classical frequentist methods such as the z-statistic and t-statistic and the scipy statistics package, this section investigates two questions: 
+1) whether the hospital's revenue stream fell below a key threshold of $12,000 
+2) whether people with insurance are charged a different amount to those without 
+Performing statistics on the first question reveals that the lower limit of the 95% confidence interval for the population mean is $12,725.48. Thus it is highly unlikely that the hospital's revenue stream fell below the threshold of $12,000. For the second question, using Welch's t-test gives us a t-value of -13.29. Thus we reject the null hypothesis and conclude that there *is* a difference in the amount charged between the two groups
 
-**Analyzing Hospital Medical Charges with Bootstrapping:**
+**Analyzing Hospital Medical Charges with Bootstrapping:** This section explores the same two questions above but analyzes it using bootstrapping methods. For the first question: When we generate 10,000 bootstrap replicates, we obtain $12724.46 (exact value might vary due to bootstrapping) for the lower limit of the 95% confidence interval, validating our frequentist approach above. For the second question, we conclude that there is no practical need to perform bootstrapping since the obtained t-value is already so low (t-value of -13.29). We do however perform bootstrapping methods to verify that the variances of the two groups (insured vs. non-insured) were unequal, validating our choice of using Welch's t-test in the previous section.
 
+**Analyzing Hospital Medical Charges with Bayesian Methods (PyMC3):** This section is mostly focused on using and familiarizing oneself with the PyMC3 library. As an exercise, this section models 'no-insurance' group's individual medical charges using Bayesian inferential modeling.
 
-**Analyzing Hospital Medical Charges with Bayesian Methods (pymc3):**
-
-
-
-### Machine Learning 
+#### Machine Learning 
 
 
 **Performing Linear regression on Boston housing dataset:**
@@ -65,14 +67,6 @@ _______
 
 
 
-
-
-Exploratory Data Analysis
-Human Body Temperature: Using a dataset of human body temperatures to illustrate the concept of Central Limit Theorem, hypothesis testing with one sample or two samples, and confidence intervals.
-
-Racial Discrimination in US Job Market: The dataset comes from a field experiment in which researchers randomly assign identical resumes with black-sounding or white-sounding names and observe the impact on requests for interviews from employers. Resumes with black-sounding names receive a callback rate of 6.4%, while white names receive a callback rate of 9.7%. This difference of 3.3 percentage points is statistically significant, as the p-value for the test of equality of callback rates is less than 0.001. Moreover, the 99% confience interval suggests that the true callback rate difference could range from 1.2 percentage points to 5.2 percentage points. Therefore, racial discrmination in the U.S. labor market still appears to be a continual challenge.
-
-Recommendations for Reducing Hospital Readmissions: Hospital readmissions have been used as indciators of poor quality of care, such as inadequate discharge planning and care coordination. The goal of the Hospital Readmissions Reduction Program is to reduce such unnecessary and avoidable readmissions. The initial report suggests taht hospitals with smaller number of discharges tend to have a higher excess readmission ratio. But it does not report the correlation coefficient or test whether the correlation is statistically significant. I improve the analysis by finding that the Pearson correlation coefficient is -0.09, suggesting a negative but small correlation between the number of discharges and excess readmission ratio. The p-value of the correlation test is less than 1%, so this negative relationship is indeed statistically significant. However, since the correlation is so small, it is not practical to assume that hospitals with smaller number of dischrages will always have a higher excess readmission ratio. As a result, I do not recommend that hospitals with smaller capacity be required to upgrade their resources or facilities.
 
 Machine Learning
 Linear Regression with Boston Housing Dataset: I use scikit-learn library to build a linear regression model to predict the housing prices in Boston. The various features include per capita crime rate, average number of rooms per dwelling, and pupil-teacher ratio by town. I also split the data into training and testing sets in order to measure how well the model built with the training set can predict the 'unseen' data in the test set. I show how multiple rounds of cross-validation performed on different partitions help limit the problem of overfitting a particular training subset and thus reduce variability of the model.
