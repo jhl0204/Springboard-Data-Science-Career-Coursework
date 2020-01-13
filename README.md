@@ -5,7 +5,7 @@
 
 This is the repository of mini assignments and projects I completed for the [Springboard Data Science Career Track](https://www.springboard.com/workshops/data-science-career-track) program. Capstone Projects, which combine most, if not all of the technical skills and concepts learned from these projects, can be found in the following separate repositories. 
 
-[Capstone 1: Predicting H1-B Visa Status for Applicants]()   
+[Capstone 1: Predicting H1-B Visa Status for Applicants](https://github.com/jhl0204/Capstone-1-H1B-Predictions)   
 
 [Capstone 2:]() (In progress)
 
